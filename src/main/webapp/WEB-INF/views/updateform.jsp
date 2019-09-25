@@ -1,16 +1,21 @@
-<%@page isELIgnored="false" %>
+<%@taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
+
 <html>
 <body>
-<h3>Update Book</h3>
-<form action="update">
-<pre>
-			Book Id	    	<input type="text" name="bookid" readonly="readonly" value="${bookinfo.getBookid() }"/><br>
-			Book Name	<input type="text" name="bname" value="${bookinfo.getBname() }"/><br>
-			Author	    	<input type="text" name="bauthor" value="${bookinfo.getBauthor() }"/><br>
-			Price       	<input type="text" name="price" value="${bookinfo.getPrice() }"/><br>
-			Subject     	<input type="text" name="subject" value="${bookinfo.getSubject() }"/><br>
-				<input type="submit" value="Update Book"/><br>
-</pre>
-</form>
+	<h3>Book Entry Form</h3>
+	<hr>
+	<form:form action="update" modelAttribute="book">
+		<pre>
+		Book Id	<form:input path="bookid"/>	
+		Book Name	<form:input path="bname"/>	
+		Author	<form:input path="bauthor"/>
+		Price	<form:input path="price"/>  
+		Subject	<form:input path="subject"/>	
+			<input type="submit" value="Update"/>
+		</pre>
+	
+	</form:form>
+	<hr>
+	
 </body>
 </html>
