@@ -3,15 +3,25 @@ package wp.javaconfig;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="books")
 public class BookModel {
 	@Id
 	private String bookid;
+	
+	@Pattern(regexp="[a-zA-Z]*", message="Only Alphabates Allowed")//only alphbates
+	@Size(min=2,max=10, message="Your Name Is Invalid , Please Use 2-10 Chars only")
 	private String bname;
 	private String bauthor;
+	
+	@Min(value=0, message="Negative Pricing Is Not possible")
 	private String price;
+	
+	
 	private String subject;
 	public String getBookid() {
 		return bookid;

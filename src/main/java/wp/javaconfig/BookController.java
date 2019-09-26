@@ -2,8 +2,11 @@ package wp.javaconfig;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,9 +26,12 @@ public class BookController {
 		return mv;
 	}
 	@RequestMapping("addbook")
-	public String add()
+	public ModelAndView add()
 	{
-		return "addBook";
+		BookModel book= new BookModel();
+		ModelAndView mv = new ModelAndView("addBook");
+		mv.addObject("book", book);
+		return mv;
 	}
 	
 	@RequestMapping("viewbook")
@@ -52,10 +58,14 @@ public class BookController {
 	}
 	
 	@RequestMapping("addbook1")
-	public ModelAndView AddBook(@ModelAttribute("book") BookModel book)
+	public ModelAndView AddBook(@Valid @ModelAttribute("book") BookModel book, BindingResult result)
 	{
+		if(result.hasErrors()) {
+		ModelAndView mv=new ModelAndView("addBook");
+		return mv;
+		}
 		bookService.insertBook(book);
-		ModelAndView mv=new ModelAndView("redirect:showall");
+		ModelAndView mv = new ModelAndView("redirect:showall");
 		return mv;
 	}
 	

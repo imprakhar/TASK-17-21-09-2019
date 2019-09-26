@@ -1,16 +1,18 @@
+<%@taglib uri="http://www.springframework.org/tags/form"  prefix="form"%>
 <html>
 <body>
 	<h3>Book-Entry-Form</h3>
-		<form action="addbook1" method="POST">
+		<form:form action="addbook1" modelAttribute="book">
 		<pre>
-			Book Id	    	<input type="text" name="bookid"/><br>
-			Book Name	<input type="text" name="bname"/><br>
-			Author	    	<input type="text" name="bauthor"/><br>
-			Price       	<input type="text" name="price"/><br>
-			Subject     	<input type="text" name="subject"/><br>
-				<input type="submit" value="Save Book"/><br>
-		</pre>				
-		</form>
+		Book Id		<form:input path="bookid"/>	<form:errors path="bookid"/>
+		Book Name	<form:input path="bname"/>	<form:errors path="bname"/>
+		Author		<form:input path="bauthor"/> <form:errors path="bauthor"/>
+		Price		<form:input path="price"/>  <form:errors path="price"/>
+		Subject		<form:input path="subject"/>	<form:errors path="subject"/>
+			<input type="submit" value="Save Book"/>
+		</pre>
+	
+	</form:form>
 		<a href="index.jsp">Home</a><br>
 		<a href="showall">List of Books</a>
 </body>
